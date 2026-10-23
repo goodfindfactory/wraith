@@ -110,9 +110,9 @@ chrome.tabs.onActivated.addListener(async ({ tabId, windowId }) => {
   const now = Date.now();
   const id = String(tabId);
   const prevId = st.activeByWindow[windowId];
-  if (prevId) st.lastActive[prevId] = now; // decay starts the moment you leave
+  if (prevId && (st.stages[prevId] || 0) !== 2) st.lastActive[prevId] = now; // decay starts the moment you leave
   st.activeByWindow[windowId] = id;
-  st.lastActive[id] = now;
+  if ((st.stages[id] || 0) !== 2) st.lastActive[id] = now; // a wraith keeps the time it was forgotten
   if ((st.stages[id] || 0) === 1) {          // looking at a fading tab revives it
     st.stages[id] = 0;
     await sendToTab(tabId, { type: 'haunt', stage: 0 });
@@ -126,6 +126,7 @@ chrome.windows.onFocusChanged.addListener(async (windowId) => {
   const [tab] = await chrome.tabs.query({ active: true, windowId });
   if (!tab) return;
   const st = await getState();
+  if ((st.stages[String(tab.id)] || 0) === 2) return;
   st.lastActive[String(tab.id)] = Date.now();
   await saveState({ lastActive: st.lastActive });
 });
