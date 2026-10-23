@@ -12,6 +12,8 @@ and actually works*). It creeps into your real browser and actually fixes tab ho
 ![The ghost asking to bury a tab](docs/screenshot-overlay.png)
 ![The Graveyard](docs/screenshot-graveyard.png)
 
+**Demo (19s):** [github.com/goodfindfactory/wraith/blob/main/docs/demo.mp4](docs/demo.mp4)
+
 ## Install
 1. Download or clone this repo (or grab the zip from the latest CI run).
 2. Open `chrome://extensions` and turn on **Developer mode**.
