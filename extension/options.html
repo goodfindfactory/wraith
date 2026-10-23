@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Settings · Tab Wraith</title>
+  <link rel="icon" href="icons/icon-32.png">
+  <link rel="stylesheet" href="ui.css">
+  <style>
+    main { max-width: 620px; margin: 0 auto; padding: 48px 24px 80px; }
+    h1 { font-size: 32px; margin: 4px 0 28px; }
+    section { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 20px; margin-bottom: 16px; }
+    section h2 { font-size: 15px; margin-bottom: 14px; }
+    .field + .field { margin-top: 16px; }
+    .inline { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    textarea { min-height: 120px; resize: vertical; }
+    .bar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    #status { color: var(--accent-2); font-size: 13px; }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="eyebrow">Tab Wraith</div>
+    <h1>Settings</h1>
+
+    <section>
+      <h2>The Haunting</h2>
+      <div class="field">
+        <label for="threshold">Minutes untouched before a tab starts fading</label>
+        <input id="threshold" type="number" min="1" max="1440" step="1">
+        <div class="hint">At twice this time it becomes a wraith and asks to be buried.</div>
+      </div>
+      <div class="field inline">
+        <div><label style="margin:0" for="demo">Demo Mode</label><div class="hint">Drops the wait to 30 seconds.</div></div>
+        <label class="switch" style="margin:0"><input type="checkbox" id="demo"><span></span></label>
+      </div>
+      <div class="field inline">
+        <div><label style="margin:0" for="sound">Ghostly moan</label><div class="hint">Plays when a wraith confronts you.</div></div>
+        <label class="switch" style="margin:0"><input type="checkbox" id="sound"><span></span></label>
+      </div>
+      <div class="field">
+        <label for="never">Never haunt these sites</label>
+        <textarea id="never" spellcheck="false"></textarea>
+        <div class="hint">One domain per line. Subdomains are covered too. Pinned tabs and tabs playing audio are always safe.</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>AI Epitaphs</h2>
+      <div class="field">
+        <label for="key">Anthropic API key</label>
+        <input id="key" type="password" autocomplete="off" placeholder="sk-ant-…">
+        <div class="hint">Optional. Stored only in this browser. When set, only the tab's title, address, and a short text excerpt are sent to write its epitaph. Without a key, built-in epitaphs are used.</div>
+      </div>
+      <div class="field">
+        <label for="model">Model</label>
+        <input id="model" type="text" spellcheck="false">
+      </div>
+    </section>
+
+    <section>
+      <h2>The Graveyard</h2>
+      <div class="bar">
+        <button id="clear" class="danger">Empty the graveyard</button>
+        <span class="hint" style="margin:0">Permanently forgets every buried tab.</span>
+      </div>
+    </section>
+
+    <div class="bar">
+      <button id="save" class="primary">Save settings</button>
+      <span id="status" role="status"></span>
+    </div>
+  </main>
+  <script src="util.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

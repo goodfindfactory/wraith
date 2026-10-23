@@ -1,0 +1,12 @@
+{
+  "name": "tab-wraith",
+  "version": "1.0.0",
+  "description": "Your abandoned tabs don't close, they die. A Chrome extension that haunts forgotten tabs.",
+  "private": true,
+  "scripts": {
+    "test": "node tests/e2e.js",
+    "package": "bash scripts/package.sh"
+  },
+  "devDependencies": { "playwright": "^1.56.0" },
+  "license": "MIT"
+}
